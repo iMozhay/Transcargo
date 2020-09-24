@@ -1,5 +1,29 @@
 <resources>
+
+    <string name="cargo_name">Cargo name</string>
+    <string name="derival">Derival</string>
+    <string name="arrival">Arrival</string>
+    <string name="city">City</string>
+    <string name="street">Street</string>
+    <string name="house">House</string>
+    <string name="total_weight">Total weight</string>
+    <string name="total_volume">Total volume</string>
+    <string name="quantity">Qty</string>
+    <string name="close">Close</string>
+    <string name="search">Search</string>
+    <string name="kg">kg</string>
+    <string name="m2">m2</string>
+    <string name="qty_0">0 pcs</string>
+
+
+
     <string name="app_name">Transcargo</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+
+
+
+
+
 </resources>

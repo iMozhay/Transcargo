@@ -1,4 +1,4 @@
-package design.mozhay.transcargo.ui.main;
+package design.mozhay.transcargo.ui.cargoFragment;
 
 import android.content.Context;
 
@@ -27,9 +27,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        if (position == 0){
+            return CargoFragment.newInstance(position);
+        } else {
+            return PlaceholderFragment.newInstance(position + 1);
+        }
+
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        //return PlaceholderFragment.newInstance(position + 1);
     }
 
     @Nullable
@@ -40,7 +46,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 2;
+        // Show 3 total pages.
+        return 3;
     }
 }

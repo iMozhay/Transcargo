@@ -1,4 +1,4 @@
-package design.mozhay.transcargo;
+package design.mozhay.transcargo.ui;
 
 import android.os.Bundle;
 
@@ -9,11 +9,10 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-import design.mozhay.transcargo.ui.main.SectionsPagerAdapter;
+import design.mozhay.transcargo.R;
+import design.mozhay.transcargo.ui.cargoFragment.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
