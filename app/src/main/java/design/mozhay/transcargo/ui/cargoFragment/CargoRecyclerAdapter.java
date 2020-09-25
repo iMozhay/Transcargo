@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import design.mozhay.transcargo.data.entity.Delivery;
@@ -13,7 +14,7 @@ import design.mozhay.transcargo.databinding.CardviewCargoBinding;
 
 public class CargoRecyclerAdapter extends RecyclerView.Adapter {
 
-    private List<Delivery> mCargoList;
+    private List<Delivery> mCargoList = new ArrayList<>();
     private CardviewCargoBinding cargoBinding;
 
     @NonNull
@@ -36,7 +37,7 @@ public class CargoRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mCargoList.size();
+        return (null != mCargoList ? mCargoList.size() : 0);
     }
 
     public class  CargoViewHolder extends RecyclerView.ViewHolder{
@@ -64,6 +65,10 @@ public class CargoRecyclerAdapter extends RecyclerView.Adapter {
             cargoBinding.cargoTotalQty.setText(delivery.getCargoQuantity());
         }
 
+    }
+
+    public void setCargoList(List<Delivery> cargoList){
+        mCargoList = cargoList;
     }
 
 }

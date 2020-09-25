@@ -1,6 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/rallyAppBackground">
+
+        <TextView
+            android:id="@+id/cargo_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cargo_name"
+            android:textColorHint="@color/rallyDarkGreen"
+            android:layout_margin="2dp"
+            android:textSize="24sp"
+            android:textColor="@color/rallyPrimaryGreen"
+            android:background="@color/rallyContentBackground"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/derival"
+                    android:layout_margin="2dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/rallyTextColorBright"
+                    android:background="@color/rallyContentBackground"/>
+
+                <TextView
+                    android:id="@+id/cargo_derival_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/city"
+                    android:textColorHint="@color/rallyTextColorDark"
+                    android:layout_margin="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/rallyTextColorBright"
+                    android:background="@color/rallyContentBackground"/>
+
+                <TextView
+                    android:id="@+id/cargo_derival_street"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/street"
+                    android:textColorHint="@color/rallyTextColorDark"
+                    android:layout_margin="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/rallyTextColorBright"
+                    android:background="@color/rallyContentBackground"/>
+
+                <TextView
+                    android:id="@+id/cargo_derival_house"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/house"
+                    android:textColorHint="@color/rallyTextColorDark"
+                    android:layout_margin="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/rallyTextColorBright"
+                    android:background="@color/rallyContentBackground"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/arrival"
+                    android:layout_margin="2dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/rallyOrange"
+                    android:background="@color/rallyContentBackground"/>
+
+                <TextView
+                    android:id="@+id/cargo_arrival_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/city"
+                    android:textColorHint="@color/rallyOrangeDark"
+                    android:layout_margin="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/rallyOrange"
+                    android:background="@color/rallyContentBackground"/>
+
+                <TextView
+                    android:id="@+id/cargo_arrival_street"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/street"
+                    android:textColorHint="@color/rallyOrangeDark"
+                    android:layout_margin="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/rallyOrange"
+                    android:background="@color/rallyContentBackground"/>
+
+                <TextView
+                    android:id="@+id/cargo_arrival_house"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/house"
+                    android:textColorHint="@color/rallyOrangeDark"
+                    android:layout_margin="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/rallyOrange"
+                    android:background="@color/rallyContentBackground"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:text="@string/total_weight"
+                android:layout_margin="2dp"
+                android:textSize="20sp"
+                android:textColor="@color/rallyPrimaryGreen"
+                android:background="@color/rallyContentBackground"/>
+
+            <EditText
+                android:id="@+id/cargo_total_weight"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:hint="@string/kg"
+                android:textColorHint="@color/rallyDarkGreen"
+                android:layout_margin="2dp"
+                android:textSize="20sp"
+                android:textColor="@color/rallyPrimaryGreen"
+                android:background="@color/rallyContentBackground"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:text="@string/total_volume"
+                android:layout_margin="2dp"
+                android:textSize="20sp"
+                android:textColor="@color/rallyPrimaryGreen"
+                android:background="@color/rallyContentBackground"/>
+
+            <TextView
+                android:id="@+id/cargo_total_volume"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:hint="@string/m2"
+                android:textColorHint="@color/rallyDarkGreen"
+                android:layout_margin="2dp"
+                android:textSize="20sp"
+                android:textColor="@color/rallyPrimaryGreen"
+                android:background="@color/rallyContentBackground"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:text="@string/quantity"
+                android:layout_margin="2dp"
+                android:textSize="20sp"
+                android:textColor="@color/rallyPrimaryGreen"
+                android:background="@color/rallyContentBackground"/>
+
+            <TextView
+                android:id="@+id/cargo_total_qty"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:hint="@string/qty_0"
+                android:textColorHint="@color/rallyDarkGreen"
+                android:layout_margin="2dp"
+                android:textSize="20sp"
+                android:textColor="@color/rallyPrimaryGreen"
+                android:background="@color/rallyContentBackground"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <Button
+                android:id="@+id/cargo_button_close"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:background="@color/rallyHeaderBackground"
+                android:text="@string/close"
+                android:textColor="@color/rallyBlue"
+                android:textSize="20sp"
+                android:layout_margin="2dp"/>
+
+            <Button
+                android:id="@+id/cargo_button_search"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:background="@color/rallyHeaderBackground"
+                android:text="@string/search"
+                android:textColor="@color/rallyBlue"
+                android:textSize="20sp"
+                android:layout_margin="2dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
