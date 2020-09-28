@@ -17,8 +17,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
+        </activity>
+
+        <activity android:name=".ui.deliveryInfoFragment.CargoInfoActivity">
+
         </activity>
 
     </application>

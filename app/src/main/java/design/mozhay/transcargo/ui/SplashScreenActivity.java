@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import design.mozhay.transcargo.R;
+import design.mozhay.transcargo.ui.main.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity implements Animator.AnimatorListener {
 

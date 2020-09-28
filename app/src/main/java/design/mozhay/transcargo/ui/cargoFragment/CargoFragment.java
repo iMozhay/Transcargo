@@ -10,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import design.mozhay.transcargo.data.entity.Delivery;
 import design.mozhay.transcargo.databinding.FragmentCargoBinding;
+import design.mozhay.transcargo.ui.deliveryInfoFragment.CargoInfoActivity;
 
 public class CargoFragment extends Fragment {
 
@@ -19,6 +22,7 @@ public class CargoFragment extends Fragment {
     private FragmentCargoBinding mCargoBinding;
     private RecyclerView mCargoRecyclerView;
     private CargoRecyclerAdapter mCargoAdapter;
+    private FloatingActionButton mFabAdd;
 
     public static CargoFragment newInstance(int index){
         CargoFragment fragment = new CargoFragment();
@@ -49,10 +53,25 @@ public class CargoFragment extends Fragment {
         mCargoRecyclerView = mCargoBinding.cargoRecyclerView;
         mCargoAdapter = new CargoRecyclerAdapter();
         mCargoRecyclerView.setAdapter(mCargoAdapter);
+        mFabAdd = mCargoBinding.fabAdd;
+        mFabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startCargoCardActivity(new Delivery(), true);
+            }
+        });
     }
 
     public void startCargoCardActivity(Delivery delivery, boolean isCreate){
-        //Intent intent = new Intent(getContext(), )
+
+        Intent intent = new Intent(getContext(), CargoInfoActivity.class);
+        if (isCreate){
+            intent.putExtra(CargoInfoActivity.DELIVERY_CREATE, isCreate);
+        } else {
+            intent.putExtra(CargoInfoActivity.DELIVERY_CREATE, false);
+            intent.putExtra(CargoInfoActivity.DELIVERY_ID, delivery.getId());
+        }
+        startActivity(intent);
     }
 
 

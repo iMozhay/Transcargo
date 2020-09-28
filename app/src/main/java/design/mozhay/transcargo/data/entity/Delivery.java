@@ -50,6 +50,14 @@ public class Delivery {
         this.cargoDescription = cargoDescription;
     }
 
+    public int getId() {
+        return mId;
+    }
+
+    public void setId(int mId) {
+        this.mId = mId;
+    }
+
     public String getCargoWeight() {
         return cargoWeight;
     }
