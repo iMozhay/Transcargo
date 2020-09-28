@@ -1,7 +1,13 @@
 package design.mozhay.transcargo.ui.deliveryInfoFragment;
 
+import design.mozhay.transcargo.App;
 import design.mozhay.transcargo.data.entity.Delivery;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
+import io.reactivex.Completable;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresenter {
 
@@ -26,7 +32,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
 
     @Override
     public void onDestroy() {
-
+        mBinding = null;
     }
 
     @Override
@@ -36,7 +42,10 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
 
     @Override
     public void actionSearch() {
-
+        Completable.fromRunnable(() -> App.getAppDeliveryDB().getDeliveryDao().insert(mDelivery))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     @Override

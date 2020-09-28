@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import design.mozhay.transcargo.data.entity.Delivery;
 import design.mozhay.transcargo.databinding.FragmentCargoBinding;
 import design.mozhay.transcargo.ui.deliveryInfoFragment.CargoInfoActivity;
+import design.mozhay.transcargo.ui.deliveryInfoFragment.CargoInfoActivityPresenterImpl;
 
 public class CargoFragment extends Fragment {
 
@@ -23,6 +26,7 @@ public class CargoFragment extends Fragment {
     private RecyclerView mCargoRecyclerView;
     private CargoRecyclerAdapter mCargoAdapter;
     private FloatingActionButton mFabAdd;
+    private CargoFragmentPresenterImpl mCargoPresenter;
 
     public static CargoFragment newInstance(int index){
         CargoFragment fragment = new CargoFragment();
@@ -40,6 +44,8 @@ public class CargoFragment extends Fragment {
 
         initialize();
 
+        mCargoPresenter = new CargoFragmentPresenterImpl(this);
+        mCargoPresenter.onStart();
         return mCargoBinding.getRoot();
     }
 
@@ -54,12 +60,7 @@ public class CargoFragment extends Fragment {
         mCargoAdapter = new CargoRecyclerAdapter();
         mCargoRecyclerView.setAdapter(mCargoAdapter);
         mFabAdd = mCargoBinding.fabAdd;
-        mFabAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startCargoCardActivity(new Delivery(), true);
-            }
-        });
+        mFabAdd.setOnClickListener(v -> startCargoCardActivity(new Delivery(), true));
     }
 
     public void startCargoCardActivity(Delivery delivery, boolean isCreate){
@@ -74,19 +75,7 @@ public class CargoFragment extends Fragment {
         startActivity(intent);
     }
 
-
-    /*
-    @Override
-    public void startProductCardActivity(Product product, boolean isCreate) {
-        Intent intent = new Intent(getContext(), ProductInfoActivity.class);
-        if (!(product instanceof Product.Empty)){ //open exist
-            intent.putExtra(ProductInfoActivity.PRODUCT_ID, product.getObjectId());
-        } else { //open new
-            intent.putExtra(ProductInfoActivity.PRODUCT_ID, "");
-        }
-        intent.putExtra(ProductInfoActivity.PRODUCT_CREATE, isCreate);
-        intent.putExtra(ProductInfoActivity.PRODUCT_PATH, product.getNode().getPath());
-        startActivity(intent);
+    public void showDelivery(List<Delivery> deliveryList){
+        mCargoAdapter.setCargoList(deliveryList);
     }
-    */
 }

@@ -33,7 +33,7 @@ public class DatabaseModule{
 
     @Singleton
     @Provides
-    DeliveryDatabase getAppDeliveryDB(){
+    DeliveryDatabase getDeliveryDB(){
         return mDeliveryDB;
     }
 }

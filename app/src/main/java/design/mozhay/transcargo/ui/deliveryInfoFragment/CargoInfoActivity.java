@@ -3,9 +3,12 @@ package design.mozhay.transcargo.ui.deliveryInfoFragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import design.mozhay.transcargo.App;
 import design.mozhay.transcargo.R;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
 
@@ -13,6 +16,8 @@ public class CargoInfoActivity extends AppCompatActivity {
 
     public static final String DELIVERY_ID = "transcargo.delivery.id";
     public static final String DELIVERY_CREATE = "transcargo.delivery.create";
+    private Button mButtonClose;
+    private Button mButtonOk;
     private FragmentDeliveryInfoBinding mDeliveryBinding;
     private CargoInfoActivityPresenter mPresenter;
 
@@ -22,9 +27,11 @@ public class CargoInfoActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_delivery_info);
 
         mDeliveryBinding = FragmentDeliveryInfoBinding.inflate(getLayoutInflater());
+        mButtonOk = findViewById(R.id.cargo_button_search);
+        mButtonClose = findViewById(R.id.cargo_button_close);
 
         initialize();
-
+        setupTextListeners();
     }
 
     private void initialize(){
@@ -33,6 +40,12 @@ public class CargoInfoActivity extends AppCompatActivity {
                 mDeliveryBinding,
                 getIntent().getBooleanExtra(DELIVERY_CREATE,true));
 
+       mButtonClose.setOnClickListener(v -> finish());
+
+        mButtonOk.setOnClickListener(v -> mPresenter.actionSearch());
+    }
+
+    private void setupTextListeners(){
         mDeliveryBinding.cargoName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -193,7 +206,6 @@ public class CargoInfoActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
 
