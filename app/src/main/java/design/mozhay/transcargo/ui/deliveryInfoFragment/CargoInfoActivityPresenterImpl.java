@@ -4,9 +4,11 @@ import design.mozhay.transcargo.App;
 import design.mozhay.transcargo.data.entity.Delivery;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
 import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import io.reactivex.CompletableObserver;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresenter {
@@ -14,13 +16,56 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
     private static Delivery mDelivery;
     private static FragmentDeliveryInfoBinding mBinding;
     private boolean isChanged = false;
+    private CargoInfoActivityView mCargoView;
+    private CompositeDisposable allDisposables;
+    private int mCargoId;
 
-    public CargoInfoActivityPresenterImpl(FragmentDeliveryInfoBinding binding, boolean isCreate){
-        //if new
+
+    private CompletableObserver mCargoObserver = new CompletableObserver() {
+        @Override
+        public void onSubscribe(Disposable d) {
+            allDisposables.add(d);
+
+        }
+
+        @Override
+        public void onComplete() {
+            mCargoView.closeInfo();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+    };
+    private SingleObserver<Delivery> mDeliveryObserver = new SingleObserver<Delivery>() {
+        @Override
+        public void onSubscribe(Disposable d) {
+            allDisposables.add(d);
+        }
+
+        @Override
+        public void onSuccess(Delivery delivery) {
+            showDeliveryInfo(delivery);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+    };
+
+    public CargoInfoActivityPresenterImpl(FragmentDeliveryInfoBinding binding, CargoInfoActivityView view, boolean isCreate, int cargo_id){
+
+        mCargoView = view;
         mBinding = binding;
+        allDisposables = new CompositeDisposable();
+        mCargoId = cargo_id;
+        //if new
         if (isCreate) {
             mDelivery = new Delivery();
         } else { //if exist
+            showDelivery(mCargoId);
             //mDelivery = findDeliveryByID(getIntent().getStringExtra(DELIVERY_ID));
         }
     }
@@ -33,6 +78,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
     @Override
     public void onDestroy() {
         mBinding = null;
+        allDisposables.dispose();
     }
 
     @Override
@@ -45,12 +91,22 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
         Completable.fromRunnable(() -> App.getAppDeliveryDB().getDeliveryDao().insert(mDelivery))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+                .subscribe(mCargoObserver);
     }
 
     @Override
     public void actionCancel() {
 
+    }
+
+    @Override
+    public void showDelivery(int cargo_id) {
+        App.getAppDeliveryDB()
+                .getDeliveryDao()
+                .getDeliveryById(cargo_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(mDeliveryObserver);
     }
 
     @Override
@@ -111,5 +167,18 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
     public void setArrivalHouse(String arrivalHouse) {
         mDelivery.setArrivalHouse(arrivalHouse);
         isChanged = true;
+    }
+
+    private void showDeliveryInfo(Delivery delivery){
+        mBinding.cargoName.setText(delivery.getCargoDescription());
+        mBinding.cargoDerivalCity.setText(delivery.getDerivalCity());
+        mBinding.cargoDerivalStreet.setText(delivery.getDerivalStreet());
+        mBinding.cargoDerivalHouse.setText(delivery.getDerivalHouse());
+        mBinding.cargoArrivalCity.setText(delivery.getArrivalCity());
+        mBinding.cargoArrivalStreet.setText(delivery.getArrivalStreet());
+        mBinding.cargoArrivalHouse.setText(delivery.getArrivalHouse());
+        mBinding.cargoTotalWeight.setText(delivery.getCargoWeight());
+        mBinding.cargoTotalVolume.setText(delivery.getCargoVolume());
+        mBinding.cargoTotalQty.setText(delivery.getCargoQuantity());
     }
 }

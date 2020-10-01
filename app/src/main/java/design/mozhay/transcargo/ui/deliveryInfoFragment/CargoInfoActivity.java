@@ -12,7 +12,7 @@ import design.mozhay.transcargo.App;
 import design.mozhay.transcargo.R;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
 
-public class CargoInfoActivity extends AppCompatActivity {
+public class CargoInfoActivity extends AppCompatActivity implements CargoInfoActivityView {
 
     public static final String DELIVERY_ID = "transcargo.delivery.id";
     public static final String DELIVERY_CREATE = "transcargo.delivery.create";
@@ -24,11 +24,10 @@ public class CargoInfoActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_delivery_info);
 
         mDeliveryBinding = FragmentDeliveryInfoBinding.inflate(getLayoutInflater());
-        mButtonOk = findViewById(R.id.cargo_button_search);
-        mButtonClose = findViewById(R.id.cargo_button_close);
+        View view = mDeliveryBinding.getRoot();
+        setContentView(view);
 
         initialize();
         setupTextListeners();
@@ -38,11 +37,16 @@ public class CargoInfoActivity extends AppCompatActivity {
 
         mPresenter = new CargoInfoActivityPresenterImpl(
                 mDeliveryBinding,
-                getIntent().getBooleanExtra(DELIVERY_CREATE,true));
+                this,
+                getIntent().getBooleanExtra(DELIVERY_CREATE,true),
+                getIntent().getIntExtra(DELIVERY_ID,0));
 
-       mButtonClose.setOnClickListener(v -> finish());
+        mDeliveryBinding.cargoButtonClose.setOnClickListener(v -> finish());
+        mDeliveryBinding.cargoButtonSearch.setOnClickListener(v -> mPresenter.actionSearch());
 
-        mButtonOk.setOnClickListener(v -> mPresenter.actionSearch());
+        /*
+        getIntent().getStringExtra(PRODUCT_ID),
+         */
     }
 
     private void setupTextListeners(){
@@ -209,5 +213,8 @@ public class CargoInfoActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void closeInfo() {
+        finish();
+    }
 }

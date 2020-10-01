@@ -19,7 +19,8 @@ import design.mozhay.transcargo.databinding.FragmentCargoBinding;
 import design.mozhay.transcargo.ui.deliveryInfoFragment.CargoInfoActivity;
 import design.mozhay.transcargo.ui.deliveryInfoFragment.CargoInfoActivityPresenterImpl;
 
-public class CargoFragment extends Fragment {
+public class CargoFragment
+        extends Fragment implements CargoRecyclerAdapter.CargoListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private FragmentCargoBinding mCargoBinding;
@@ -42,6 +43,7 @@ public class CargoFragment extends Fragment {
                              Bundle savedInstanceState) {
         mCargoBinding = FragmentCargoBinding.inflate(inflater, container, false);
 
+
         initialize();
 
         mCargoPresenter = new CargoFragmentPresenterImpl(this);
@@ -53,6 +55,12 @@ public class CargoFragment extends Fragment {
     public void onDestroyView(){
         super.onDestroyView();
         mCargoBinding = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mCargoPresenter.loadDelivery();
     }
 
     private void initialize(){
@@ -77,5 +85,10 @@ public class CargoFragment extends Fragment {
 
     public void showDelivery(List<Delivery> deliveryList){
         mCargoAdapter.setCargoList(deliveryList);
+    }
+
+    @Override
+    public void onClickDelivery(Delivery delivery) {
+        startCargoCardActivity(delivery, false);
     }
 }

@@ -14,6 +14,8 @@ public interface CargoInfoActivityPresenter {
 
     void actionCancel();
 
+    void showDelivery(int cargoId);
+
     //product text values management below
     void setDescription(String text);
 

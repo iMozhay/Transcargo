@@ -11,12 +11,16 @@ import java.util.List;
 
 import design.mozhay.transcargo.data.entity.Delivery;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 @Dao
 public interface DeliveryDao {
 
     @Query("SELECT * FROM delivery")
     Flowable<List<Delivery>> getAllDeliveries();
+
+    @Query("SELECT * FROM delivery WHERE id = :searchId")
+    Single<Delivery> getDeliveryById(int searchId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Delivery delivery);

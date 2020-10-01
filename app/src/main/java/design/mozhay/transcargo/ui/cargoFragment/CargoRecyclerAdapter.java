@@ -1,6 +1,7 @@
 package design.mozhay.transcargo.ui.cargoFragment;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,11 @@ public class CargoRecyclerAdapter extends RecyclerView.Adapter {
 
     private List<Delivery> mCargoList = new ArrayList<>();
     private CardviewCargoBinding cargoBinding;
+    private CargoListener mListener;
+
+    public interface CargoListener{
+        void onClickDelivery(Delivery delivery);
+    }
 
     @NonNull
     @Override
@@ -46,6 +52,7 @@ public class CargoRecyclerAdapter extends RecyclerView.Adapter {
 
         public CargoViewHolder(@NonNull CardviewCargoBinding itemBinding) {
             super(itemBinding.getRoot());
+            itemBinding.getRoot().setOnClickListener(deliveryClick);
         }
 
         public void setPosition(int position){
@@ -63,12 +70,22 @@ public class CargoRecyclerAdapter extends RecyclerView.Adapter {
             cargoBinding.cargoTotalWeight.setText(delivery.getCargoWeight());
             cargoBinding.cargoTotalVolume.setText(delivery.getCargoVolume());
             cargoBinding.cargoTotalQty.setText(delivery.getCargoQuantity());
+
         }
 
+        View.OnClickListener deliveryClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null){
+                    mListener.onClickDelivery(mCargoList.get(mPosition));
+                }
+            }
+        };
     }
 
     public void setCargoList(List<Delivery> cargoList){
         mCargoList = cargoList;
+        notifyDataSetChanged();
     }
 
 }
