@@ -1,7 +1,7 @@
 package design.mozhay.transcargo.ui.deliveryInfoFragment;
 
 import design.mozhay.transcargo.App;
-import design.mozhay.transcargo.data.entity.Delivery;
+import design.mozhay.transcargo.data.entity.model.Delivery;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
@@ -46,6 +46,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
 
         @Override
         public void onSuccess(Delivery delivery) {
+            mDelivery = delivery;
             showDeliveryInfo(delivery);
         }
 

@@ -2,15 +2,12 @@ package design.mozhay.transcargo.ui.cargoFragment;
 
 import androidx.annotation.NonNull;
 
-import org.reactivestreams.Subscription;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import design.mozhay.transcargo.App;
 import design.mozhay.transcargo.data.database.DeliveryDatabase;
-import design.mozhay.transcargo.data.entity.Delivery;
-import io.reactivex.FlowableSubscriber;
+import design.mozhay.transcargo.data.entity.model.Delivery;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;

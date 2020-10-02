@@ -1,6 +1,6 @@
 package design.mozhay.transcargo.ui.deliveryInfoFragment;
 
-import design.mozhay.transcargo.data.entity.Delivery;
+import design.mozhay.transcargo.data.entity.model.Delivery;
 
 public interface CargoInfoActivityPresenter {
 

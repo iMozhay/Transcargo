@@ -14,10 +14,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import design.mozhay.transcargo.data.entity.Delivery;
+import design.mozhay.transcargo.data.entity.model.Delivery;
 import design.mozhay.transcargo.databinding.FragmentCargoBinding;
 import design.mozhay.transcargo.ui.deliveryInfoFragment.CargoInfoActivity;
-import design.mozhay.transcargo.ui.deliveryInfoFragment.CargoInfoActivityPresenterImpl;
 
 public class CargoFragment
         extends Fragment implements CargoRecyclerAdapter.CargoListener {
@@ -66,6 +65,7 @@ public class CargoFragment
     private void initialize(){
         mCargoRecyclerView = mCargoBinding.cargoRecyclerView;
         mCargoAdapter = new CargoRecyclerAdapter();
+        mCargoAdapter.setListener(this);
         mCargoRecyclerView.setAdapter(mCargoAdapter);
         mFabAdd = mCargoBinding.fabAdd;
         mFabAdd.setOnClickListener(v -> startCargoCardActivity(new Delivery(), true));

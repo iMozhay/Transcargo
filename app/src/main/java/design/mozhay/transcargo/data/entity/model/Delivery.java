@@ -1,4 +1,4 @@
-package design.mozhay.transcargo.data.entity;
+package design.mozhay.transcargo.data.entity.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

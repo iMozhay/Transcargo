@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import design.mozhay.transcargo.data.entity.Delivery;
+import design.mozhay.transcargo.data.entity.model.Delivery;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 

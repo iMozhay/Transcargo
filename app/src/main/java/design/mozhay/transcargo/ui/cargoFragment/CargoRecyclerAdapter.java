@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import design.mozhay.transcargo.data.entity.Delivery;
+import design.mozhay.transcargo.data.entity.model.Delivery;
 import design.mozhay.transcargo.databinding.CardviewCargoBinding;
 
 public class CargoRecyclerAdapter extends RecyclerView.Adapter {
@@ -88,4 +88,7 @@ public class CargoRecyclerAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+    public void setListener(CargoListener listener){
+        mListener = listener;
+    }
 }
