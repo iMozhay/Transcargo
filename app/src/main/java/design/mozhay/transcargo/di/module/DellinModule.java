@@ -1,5 +1,7 @@
 package design.mozhay.transcargo.di.module;
 
+import android.app.Application;
+
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Singleton;
@@ -13,7 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class DellinModule {
 
-    public DellinModule(){}
+    public DellinModule(Application app){
+
+    }
 
     @Singleton
     @Provides
@@ -26,9 +30,11 @@ public class DellinModule {
     Retrofit getRetrofit(){
         return new Retrofit
                 .Builder()
-                .baseUrl(" https://api.dellin.ru")
+                .baseUrl("https://api.dellin.ru/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
+
+
 }

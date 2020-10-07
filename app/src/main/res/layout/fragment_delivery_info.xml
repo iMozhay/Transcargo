@@ -222,12 +222,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="100">
+            android:weightSum="99">
 
             <Button
                 android:id="@+id/cargo_button_close"
                 android:layout_width="0dp"
-                android:layout_weight="50"
+                android:layout_weight="33"
                 android:layout_height="wrap_content"
                 android:background="@color/rallyHeaderBackground"
                 android:text="@string/close"
@@ -238,9 +238,22 @@
                 android:focusable="true"/>
 
             <Button
-                android:id="@+id/cargo_button_search"
+                android:id="@+id/cargo_button_info"
                 android:layout_width="0dp"
-                android:layout_weight="50"
+                android:layout_weight="33"
+                android:layout_height="wrap_content"
+                android:background="@color/rallyHeaderBackground"
+                android:text="@string/info"
+                android:textColor="@color/rallyBlue"
+                android:textSize="20sp"
+                android:layout_margin="2dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <Button
+                android:id="@+id/cargo_button_ok"
+                android:layout_width="0dp"
+                android:layout_weight="33"
                 android:layout_height="wrap_content"
                 android:background="@color/rallyHeaderBackground"
                 android:text="@string/ok"

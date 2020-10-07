@@ -32,7 +32,7 @@ public interface ApplicationComponent {
         return DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(app))
                 .databaseModule(new DatabaseModule(app))
-                .dellinModule(new DellinModule())
+                .dellinModule(new DellinModule(app))
                 .gTDModule(new GTDModule())
                 .build();
     }

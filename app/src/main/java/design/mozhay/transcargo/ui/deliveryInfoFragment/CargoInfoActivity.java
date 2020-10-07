@@ -8,8 +8,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import design.mozhay.transcargo.App;
-import design.mozhay.transcargo.R;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
 
 public class CargoInfoActivity extends AppCompatActivity implements CargoInfoActivityView {
@@ -41,12 +39,10 @@ public class CargoInfoActivity extends AppCompatActivity implements CargoInfoAct
                 getIntent().getBooleanExtra(DELIVERY_CREATE,true),
                 getIntent().getIntExtra(DELIVERY_ID,0));
 
-        mDeliveryBinding.cargoButtonClose.setOnClickListener(v -> finish());
-        mDeliveryBinding.cargoButtonSearch.setOnClickListener(v -> mPresenter.actionSearch());
+        mDeliveryBinding.cargoButtonClose.setOnClickListener(v -> mPresenter.actionCancel());
+        mDeliveryBinding.cargoButtonOk.setOnClickListener(v -> mPresenter.actionOk());
+        mDeliveryBinding.cargoButtonInfo.setOnClickListener(v -> mPresenter.actionInfo());
 
-        /*
-        getIntent().getStringExtra(PRODUCT_ID),
-         */
     }
 
     private void setupTextListeners(){
@@ -212,9 +208,9 @@ public class CargoInfoActivity extends AppCompatActivity implements CargoInfoAct
         });
     }
 
-
     @Override
     public void closeInfo() {
+        mPresenter.onDestroy();
         finish();
     }
 }

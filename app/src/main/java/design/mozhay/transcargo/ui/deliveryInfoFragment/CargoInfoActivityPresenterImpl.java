@@ -2,9 +2,13 @@ package design.mozhay.transcargo.ui.deliveryInfoFragment;
 
 import design.mozhay.transcargo.App;
 import design.mozhay.transcargo.data.entity.model.Delivery;
+import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawAuthResult;
+import design.mozhay.transcargo.data.service.dellin.DellinRepository;
+import design.mozhay.transcargo.data.service.dellin.DellinRepositoryImpl;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
+import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -19,6 +23,8 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
     private CargoInfoActivityView mCargoView;
     private CompositeDisposable allDisposables;
     private int mCargoId;
+
+    private DellinRepository mDellinRepo;
 
 
     private CompletableObserver mCargoObserver = new CompletableObserver() {
@@ -62,6 +68,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
         mBinding = binding;
         allDisposables = new CompositeDisposable();
         mCargoId = cargo_id;
+        mDellinRepo = new DellinRepositoryImpl(App.getRestApiDellin());
         //if new
         if (isCreate) {
             mDelivery = new Delivery();
@@ -88,7 +95,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
     }
 
     @Override
-    public void actionSearch() {
+    public void actionOk() {
         Completable.fromRunnable(() -> App.getAppDeliveryDB().getDeliveryDao().insert(mDelivery))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -97,6 +104,39 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
 
     @Override
     public void actionCancel() {
+        mCargoView.closeInfo();
+    }
+
+    @Override
+    public void actionInfo() {
+        mDellinRepo
+                .getSessionID()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<DLRawAuthResult>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        int i = 0;
+
+                    }
+
+                    @Override
+                    public void onNext(DLRawAuthResult dlRawAuthResult) {
+                        int i = 0;
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        int i = 0;
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        int i = 0;
+
+                    }
+                });
 
     }
 

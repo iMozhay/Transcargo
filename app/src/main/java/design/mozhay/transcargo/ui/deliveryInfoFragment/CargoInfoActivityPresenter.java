@@ -10,9 +10,11 @@ public interface CargoInfoActivityPresenter {
 
     void update(Delivery delivery);
 
-    void actionSearch();
+    void actionOk();
 
     void actionCancel();
+
+    void actionInfo();
 
     void showDelivery(int cargoId);
 
