@@ -8,9 +8,7 @@ import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawAuthResul
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawMicroCalcResult;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class DellinRepositoryImpl implements DellinRepository {
 
@@ -18,7 +16,6 @@ public class DellinRepositoryImpl implements DellinRepository {
     private DLAuth mDellinKeys;
     private String mSessionID;
     private DLRawAuthBody mAuthBody = new DLRawAuthBody();
-
 
     private Observer<DLRawAuthResult> mDLAuthObserver = new Observer<DLRawAuthResult>() {
         @Override
@@ -51,10 +48,10 @@ public class DellinRepositoryImpl implements DellinRepository {
     }
 
     @Override
-    public Observable<DLRawAuthResult> getSessionID() {
+    public Observable<DLRawAuthResult> getAuth() {
         return mRestApiDellin
                 .getAuth(mAuthBody);
-                //.map(dlRawAuthResult -> mSessionID = dlRawAuthResult.getRawSessionID().getSessionID());
+
     }
 
     @Override

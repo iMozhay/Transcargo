@@ -9,7 +9,7 @@ import io.reactivex.Observable;
 public interface DellinRepository {
 
     //temp test
-    Observable<DLRawAuthResult> getSessionID();
+    Observable<DLRawAuthResult> getAuth();
 
 
     Observable<DLRawMicroCalcResult> getDellinMicroCalc(Delivery delivery);

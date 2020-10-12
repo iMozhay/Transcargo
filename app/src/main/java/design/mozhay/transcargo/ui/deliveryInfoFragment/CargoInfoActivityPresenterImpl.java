@@ -110,7 +110,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
     @Override
     public void actionInfo() {
         mDellinRepo
-                .getSessionID()
+                .getAuth()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DLRawAuthResult>() {
