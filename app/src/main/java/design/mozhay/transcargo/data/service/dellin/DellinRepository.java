@@ -1,6 +1,7 @@
 package design.mozhay.transcargo.data.service.dellin;
 
 import design.mozhay.transcargo.data.entity.model.Delivery;
+import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawAuthBody;
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawAuthResult;
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawMicroCalcResult;
 import io.reactivex.Observable;

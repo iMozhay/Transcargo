@@ -1,21 +1,22 @@
 package design.mozhay.transcargo.data.entity.rest.dellin;
 
+import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawAuthBody;
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawAuthResult;
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawCitiesResult;
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawMicroCalcResult;
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawStreetResult;
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface RestApiDellin {
 
-    @GET("v3/auth/login")
-    Observable<DLRawAuthResult> getAuth(
-            @Query("appkey") String appKey,
-            @Query("login") String appLogin,
-            @Query("password") String appPassword
-    );
+    @Headers("Content-Type: application/json")
+    @POST("v3/auth/login")
+    Observable<DLRawAuthResult> getAuth(@Body DLRawAuthBody authBody);
 
     @GET("v2/public/kladr")
     Observable<DLRawCitiesResult> findKLADRCity(
