@@ -1,10 +1,13 @@
 package design.mozhay.transcargo.ui.deliveryInfoFragment;
 
+import java.util.Calendar;
+
 import design.mozhay.transcargo.App;
 import design.mozhay.transcargo.data.entity.model.Delivery;
 import design.mozhay.transcargo.data.entity.rest.dellin.rawResult.DLRawAuthResult;
 import design.mozhay.transcargo.data.service.dellin.DellinRepository;
 import design.mozhay.transcargo.data.service.dellin.DellinRepositoryImpl;
+import design.mozhay.transcargo.data.service.logs.LogsRepository;
 import design.mozhay.transcargo.databinding.FragmentDeliveryInfoBinding;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
@@ -23,6 +26,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
     private CargoInfoActivityView mCargoView;
     private CompositeDisposable allDisposables;
     private int mCargoId;
+    private LogsRepository mLogsRepo;
 
     private DellinRepository mDellinRepo;
 
@@ -69,6 +73,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
         allDisposables = new CompositeDisposable();
         mCargoId = cargo_id;
         mDellinRepo = new DellinRepositoryImpl(App.getRestApiDellin());
+        mLogsRepo = App.getAppLogsRepo();
         //if new
         if (isCreate) {
             mDelivery = new Delivery();
@@ -116,13 +121,13 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
                 .subscribe(new Observer<DLRawAuthResult>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        int i = 0;
-
+                        mLogsRepo.showMessage(Calendar.getInstance().getTime().toString(), "Disposable created");
                     }
 
                     @Override
                     public void onNext(DLRawAuthResult dlRawAuthResult) {
                         int i = 0;
+                        mLogsRepo.showMessage(Calendar.getInstance().getTime().toString(), "Authorization granted");
                     }
 
                     @Override
@@ -134,7 +139,7 @@ public class CargoInfoActivityPresenterImpl implements CargoInfoActivityPresente
                     @Override
                     public void onComplete() {
                         int i = 0;
-
+                        mLogsRepo.showMessage(Calendar.getInstance().getTime().toString(), "Authorization completed");
                     }
                 });
 

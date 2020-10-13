@@ -4,6 +4,7 @@ import android.app.Application;
 
 import design.mozhay.transcargo.data.database.DeliveryDatabase;
 import design.mozhay.transcargo.data.entity.rest.dellin.RestApiDellin;
+import design.mozhay.transcargo.data.service.logs.LogsRepository;
 import design.mozhay.transcargo.di.component.ApplicationComponent;
 
 public class App extends Application {
@@ -23,5 +24,9 @@ public class App extends Application {
 
     public static RestApiDellin getRestApiDellin(){
         return mAppComponent.getRestApiDellin();
+    }
+
+    public static LogsRepository getAppLogsRepo(){
+        return mAppComponent.getLogsRepo();
     }
 }

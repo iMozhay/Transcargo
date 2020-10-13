@@ -6,12 +6,18 @@ public class LogsRepositoryImpl implements LogsRepository {
 
     private LogsFragment mLogFragment;
 
-    public LogsRepositoryImpl(LogsFragment logsFragment){
-        mLogFragment = logsFragment;
+    public LogsRepositoryImpl(){
     }
 
     @Override
     public void showMessage(String time, String message) {
-        mLogFragment.setLogMessage(time, message);
+        if (mLogFragment != null) {
+            mLogFragment.setLogMessage(time, message);
+        }
+    }
+
+    @Override
+    public void setLogFragment(LogsFragment logFragment) {
+        mLogFragment = logFragment;
     }
 }
